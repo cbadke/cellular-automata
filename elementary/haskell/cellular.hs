@@ -1,5 +1,6 @@
 import Data.Bits
 import Data.Map
+import System.Environment
 
 rule = 38
 
@@ -14,3 +15,8 @@ generation row = generationR ([0,0] ++ row ++ [0,0])
     generationR row
         | (length row) < 3 = []
         | otherwise = (ruleMap ! (take 3 row)) : (generationR (drop 1 row))
+
+main = do
+    args <- getArgs
+    let numLines = read (head args) :: Int
+    putStrLn (show numLines)
